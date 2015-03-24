@@ -12,29 +12,36 @@ log_commit_message="Commit undetermined"
 
 exec >$log 2>&1
 
-{ # TRY
+echo
+echo -- PRE-TEST --
+echo
 
-  git clone -b $branch git@github.com:fifthweek/fifthweek-web.git $home/fifthweek-web
-  cd $home/fifthweek-web
+# IMPORTANT: Remember to append each line with a && suffix.
+# This ensures each subsequent command is only executed if the preceding command succeeds, and also reports
+# the overall result as a truth value that is required for the TRY/CATCH mechanism to work. Lovely.
 
-  log_commit_message="$(git log -1 --pretty=%B) - $(git rev-parse --short HEAD)"
+{
+  git clone -b $branch git@github.com:fifthweek/fifthweek-web.git $home/fifthweek-web &&
+  cd $home/fifthweek-web &&
 
-  npm install
-  bower install --config.interactive=false
+  log_commit_message="$(git log -1 --pretty=%B) - $(git rev-parse --short HEAD)" &&
 
-  # grunt ptest:live:dist:browserstack
+  npm install &&
+  bower install --config.interactive=false &&
 
-  success_mode="Success"
+  # grunt ptest:live:dist:browserstack &&
+
+  success_mode="Success" &&
   icon_emoji=":white_check_mark:"
 
-} || { # CATCH 
-
-  success_mode="Failure"
+} || {
+  success_mode="Failure" &&
   icon_emoji=":no_entry:"
-
 }
 
-# FINALLY
+echo
+echo -- POST-TEST --
+echo
 
 git clone -b $branch git@github.com:fifthweek/fifthweek-web-test-machine-logs.git $home/fifthweek-web-test-machine-logs
 rm -rf $home/fifthweek-web-test-machine-logs/*
@@ -46,4 +53,4 @@ git add -A
 git commit -m "$success_mode: $log_commit_message"
 git push
 
-curl -X POST --data-urlencode 'payload={"username": "Fifthweek Full Test Suite", "text": "'"$success_mode"': '"$log_commit_message"'", "icon_emoji": "'"$icon_emoji"'"}' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode 'payload={"username": "Fifthweek Full Test Suite", "text": "'"$success_mode"': '"$log_commit_message"'\nFull report: https://github.com/fifthweek/fifthweek-web-test-machine-logs/tree/'"$branch"'", "icon_emoji": "'"$icon_emoji"'"}' https://hooks.slack.com/services/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
