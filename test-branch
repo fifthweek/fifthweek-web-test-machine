@@ -24,12 +24,14 @@ exec >$log 2>&1
 
   # grunt ptest:live:dist:browserstack
 
-  log_commit_message="PASS: $log_commit_message"
+  success_mode="Success"
+  icon_emoji=":white_check_mark:"
 
 } || { # CATCH 
 
-  log_commit_message="FAIL: $log_commit_message"
-
+  success_mode="Failure"
+  icon_emoji=":no_entry:"
+  
 }
 
 # FINALLY
@@ -41,5 +43,7 @@ cp $log $home/fifthweek-web-test-machine-logs/fifthweek-web-test.log
 cd $home/fifthweek-web-test-machine-logs
 
 git add -A
-git commit -m "$log_commit_message"
+git commit -m "$success_mode: $log_commit_message"
 git push
+
+curl -X POST --data-urlencode 'payload={"username": "Fifthweek Full Test Suite", "text": "$success_mode: $log_commit_message", "icon_emoji": "$icon_emoji"}' https://hooks.slack.com/services/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
