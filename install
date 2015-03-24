@@ -5,4 +5,4 @@ install_location=$(pwd)
 npm install -g bower
 npm install -g grunt-cli
 
-echo "40 * * * * (cd $install_location ; ./test-branch restyle)" | sort - | uniq - | crontab -
+echo "46 * * * * (cd $install_location ; ./test-branch restyle)" | sort - | uniq - | crontab -
