@@ -22,7 +22,7 @@ exec >$log 2>&1
   npm install
   bower install --config.interactive=false
 
-  grunt ptest:live:dist:browserstack
+  # grunt ptest:live:dist:browserstack
 
   log_commit_message="PASS: $log_commit_message"
 
