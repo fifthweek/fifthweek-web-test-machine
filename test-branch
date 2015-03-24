@@ -16,6 +16,10 @@ echo
 echo -- PRE-TEST --
 echo
 
+echo Time: $(date)
+echo User: $(whoami)
+echo PATH: $PATH
+
 # IMPORTANT: Remember to append each line with a && suffix.
 # This ensures each subsequent command is only executed if the preceding command succeeds, and also reports
 # the overall result as a truth value that is required for the TRY/CATCH mechanism to work. Lovely.
