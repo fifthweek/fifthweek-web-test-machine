@@ -1,0 +1,8 @@
+#!/bin/bash
+
+install_location=$(pwd)
+
+npm install -g bower
+npm install -g grunt-cli
+
+echo "0 0 * * * (cd $install_location ; ./test-branch restyle)" | sort - | uniq - | crontab -
