@@ -63,15 +63,17 @@ On your local machine (i.e. not in the above SSH shell):
     sudo apt-get -q -y install npm
     npm config set prefix ~/npm
 
-    echo export PATH="\$PATH:\$HOME/npm/bin" >> ~/.zshrc
+    echo . ~/.environment-variables >> ~/.zshrc
+    echo export PATH="\$PATH:\$HOME/npm/bin" >> ~/.environment-variables
+
     source ~/.zshrc
 
 #### Set BrowserStack environment variables
 
 Substitute `<key>` and `<username` with service account credentials.
 
-    echo export BROWSER_STACK_ACCESS_KEY=<key> >> ~/.zshrc
-    echo export BROWSER_STACK_USERNAME=<username> >> ~/.zshrc
+    echo export BROWSER_STACK_ACCESS_KEY=<key> >> ~/.environment-variables
+    echo export BROWSER_STACK_USERNAME=<username> >> ~/.environment-variables
     source ~/.zshrc
 
 #### Install the scheduled task

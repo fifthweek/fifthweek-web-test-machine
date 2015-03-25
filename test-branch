@@ -13,12 +13,12 @@ log_commit_message="Commit undetermined"
 exec >$log 2>&1
 
 echo
-echo -- PRE-TEST --
+echo -- PRE TEST --
 echo
-
 echo Time: $(date)
 echo User: $(whoami)
 echo PATH: $PATH
+echo
 
 # IMPORTANT: Remember to append each line with a && suffix.
 # This ensures each subsequent command is only executed if the preceding command succeeds, and also reports
@@ -44,7 +44,7 @@ echo PATH: $PATH
 }
 
 echo
-echo -- POST-TEST --
+echo -- POST TEST --
 echo
 
 git clone -b $branch git@github.com:fifthweek/fifthweek-web-test-machine-logs.git $home/fifthweek-web-test-machine-logs
