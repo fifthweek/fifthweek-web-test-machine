@@ -16,6 +16,7 @@ echo
 echo -- PRE TEST --
 echo
 echo Time: $(date)
+echo Branch: $branch
 echo User: $(whoami)
 echo PATH: $PATH
 echo
