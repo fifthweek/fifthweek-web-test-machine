@@ -19,11 +19,11 @@ This is not part of the CI pipeline, so errors will likely be reported after cha
 
 ## Deploying to Ubuntu 14.04 (64 bit)
 
-### Boilerplate setup for AWS
+Instructions have been tested against AWS on the following AMI: 
 
-Instructions for: ubuntu-trusty-14.04-amd64-server-20150123 (ami-9a562df2)
+    ubuntu-trusty-14.04-amd64-server-20150123 (ami-9a562df2)
 
-#### Setup ZSH and GIT
+### Setup ZSH and GIT
 
     sudo apt-get update
     sudo apt-get install language-pack-en
@@ -37,7 +37,7 @@ Note, the last line usually has a PAM authentication error when trying to change
 
 Finally, `exit` the session and re-connect for changes to apply.
 
-#### Install private key for service account
+### Install private key for service account
 
 On your local machine (i.e. not in the above SSH shell):
 
@@ -55,7 +55,7 @@ On your local machine (i.e. not in the above SSH shell):
 
         ssh -o StrictHostKeyChecking=no git@github.com
 
-#### Install Java and NPM
+### Install Java and NPM
 
     sudo apt-get -q -y install default-jre
     sudo apt-get -q -y install nodejs
@@ -68,7 +68,7 @@ On your local machine (i.e. not in the above SSH shell):
 
     source ~/.zshrc
 
-#### Set BrowserStack environment variables
+### Set BrowserStack environment variables
 
 Substitute `<key>` and `<username` with service account credentials.
 
@@ -76,9 +76,25 @@ Substitute `<key>` and `<username` with service account credentials.
     echo export BROWSER_STACK_USERNAME=<username> >> ~/.environment-variables
     source ~/.zshrc
 
-#### Install the scheduled task
+### Install the scheduled task
 
     git clone git@github.com:fifthweek/fifthweek-web-test-machine.git
     cd fifthweek-web-test-machine
     ./install
 
+## Updating the test script
+
+    cd ~/fifthweek-web-test-machine
+    git pull
+    ./install
+
+## Manually running the tests
+
+Replace `<branch>` with the branch name. Note: when testing against new branches, ensure a same-named branch exists in `fifthweek/fifthweek-web-test-machine-logs`.
+
+    cd ~/fifthweek-web-test-machine
+    ./test-branch <branch>
+
+## Adding a new scheduled test suite / branch
+
+The test script is scheduled via `crontab` jobs configured in the `install` script. To add a new scheduled test run (perhaps for a different branch), simply duplicate a `crontab` line in the `install` script and be sure to change the branch and schedule time -- you cannot run multiple tests in parallel.
