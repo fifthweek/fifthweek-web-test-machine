@@ -34,7 +34,7 @@ echo
   npm install &&
   bower install --config.interactive=false &&
 
-  # grunt ptest:live:dist:browserstack &&
+  grunt ptest:live:dist:browserstack &&
 
   success_mode="Success" &&
   icon_emoji=":white_check_mark:"
