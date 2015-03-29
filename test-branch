@@ -51,7 +51,14 @@ echo
 {
   git clone -b $branch git@github.com:fifthweek/fifthweek-web-test-machine-logs.git $home/fifthweek-web-test-machine-logs &&
   rm -rf $home/fifthweek-web-test-machine-logs/* &&
-  cp -rf $home/fifthweek-web/reports/* $home/fifthweek-web-test-machine-logs/ &&
+  {
+    if [ -d "$home/fifthweek-web/reports" ]; then
+      cp -rf $home/fifthweek-web/reports/* $home/fifthweek-web-test-machine-logs/
+    else
+      echo No reports created.
+    fi
+  }  &&
+
   cp $log $home/fifthweek-web-test-machine-logs/fifthweek-web-test.log &&
 
   cd $home/fifthweek-web-test-machine-logs &&
