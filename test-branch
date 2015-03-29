@@ -69,5 +69,5 @@ echo
 
   curl -X POST --data-urlencode 'payload={"username": "Fifthweek Full Test Suite", "text": "'"$success_mode"': '"$log_commit_message"'\nFull report: https://github.com/fifthweek/fifthweek-web-test-machine-logs/tree/'"$branch"'", "icon_emoji": "'"$icon_emoji"'"}' https://hooks.slack.com/services/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
 } || {
-  curl -X POST --data-urlencode 'payload={"username": "Fifthweek Full Test Suite", "text": "Error: Something went wrong whilst reporting the outcome of the last test.", "icon_emoji": ":warning:"}' https://hooks.slack.com/services/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
+  curl -X POST --data-urlencode 'payload={"username": "Fifthweek Full Test Suite", "text": "Error: A problem occurred while reporting the results for the last test run.", "icon_emoji": ":warning:"}' https://hooks.slack.com/services/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
 }
