@@ -95,6 +95,10 @@ Replace `<branch>` with the branch name. Note: when testing against new branches
     cd ~/fifthweek-web-test-machine
     ./test-branch <branch>
 
+## Killing a background test session
+
+    pkill process-name
+
 ## Adding a new scheduled test suite / branch
 
 The test script is scheduled via `crontab` jobs configured in the `install` script. To add a new scheduled test run (perhaps for a different branch), simply duplicate a `crontab` line in the `install` script and be sure to change the branch and schedule time -- you cannot run multiple tests in parallel.
