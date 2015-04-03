@@ -10,4 +10,4 @@ git config --global user.email services@fifthweek.com
 
 # When adding branches, ensure a same-named branch exists in fifthweek/fifthweek-web-test-machine-logs
 
-echo "17 * * * * (cd $install_location ; ./test-branch-with-env restyle)" | sort - | uniq - | crontab -
+echo "24 * * * * (cd $install_location ; ./test-branch-with-env restyle)" | sort - | uniq - | crontab -
