@@ -58,9 +58,9 @@ On your local machine (i.e. not in the above SSH shell):
 ### Install Java and NPM
 
     sudo apt-get -q -y install default-jre
-    sudo apt-get -q -y install nodejs
-    sudo apt-get -q -y install nodejs-legacy
-    sudo apt-get -q -y install npm
+    curl -sL https://deb.nodesource.com/setup | sudo bash -
+    sudo apt-get install -y nodejs
+    sudo npm install npm -g
     npm config set prefix ~/npm
 
     echo . ~/.environment-variables >> ~/.zshrc
